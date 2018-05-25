@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Web", "RabbitMQDemo.Web\RabbitMQDemo.Web.csproj", "{7B7B8C95-9C59-4F21-9D40-A041F6477EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Service", "RabbitMQDemo.Service\RabbitMQDemo.Service.csproj", "{2B858654-B21F-41F3-9FC7-BEDB6766BF72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Service", "RabbitMQDemo.Service\RabbitMQDemo.Service.csproj", "{76C57306-D2BC-4961-8806-FA1F60DF475C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{7B7B8C95-9C59-4F21-9D40-A041F6477EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B7B8C95-9C59-4F21-9D40-A041F6477EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B7B8C95-9C59-4F21-9D40-A041F6477EC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B858654-B21F-41F3-9FC7-BEDB6766BF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B858654-B21F-41F3-9FC7-BEDB6766BF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B858654-B21F-41F3-9FC7-BEDB6766BF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B858654-B21F-41F3-9FC7-BEDB6766BF72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C57306-D2BC-4961-8806-FA1F60DF475C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C57306-D2BC-4961-8806-FA1F60DF475C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C57306-D2BC-4961-8806-FA1F60DF475C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C57306-D2BC-4961-8806-FA1F60DF475C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

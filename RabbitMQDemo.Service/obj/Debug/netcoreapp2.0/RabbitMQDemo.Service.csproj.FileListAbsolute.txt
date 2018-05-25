@@ -1,0 +1,4 @@
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Service/obj/Debug/netcoreapp2.0/RabbitMQDemo.Service.csprojResolveAssemblyReference.cache
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Service/obj/Debug/netcoreapp2.0/RabbitMQDemo.Service.csproj.CoreCompileInputs.cache
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Service/obj/Debug/netcoreapp2.0/RabbitMQDemo.Service.AssemblyInfoInputs.cache
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Service/obj/Debug/netcoreapp2.0/RabbitMQDemo.Service.AssemblyInfo.cs

@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{7B7B8C95-9C59-4F21-9D40-A041F6477EC7}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RabbitMQDemo.Service/Class1.cs">
+    <Files>
+      <File FileName="RabbitMQDemo.Web/Startup.cs" Line="27" Column="13" />
+      <File FileName="RabbitMQDemo.Web/Models/User.cs" Line="2" Column="34" />
+      <File FileName="RabbitMQDemo.Web/Controllers/HomeController.cs" Line="33" Column="10" />
+      <File FileName="RabbitMQDemo.Web/Models/TestUserStorage.cs" Line="1" Column="34" />
+      <File FileName="RabbitMQDemo.Web/Views/Account/Login.cshtml" Line="10" Column="5" />
+      <File FileName="RabbitMQDemo.Web/Controllers/AccountController.cs" Line="37" Column="10" />
+      <File FileName="RabbitMQDemo.Service/Class1.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.RabbitMQDemo.Service FirstBuild="True" />
+  <DisabledProjects>
+    <String>RabbitMQDemo.Service/RabbitMQDemo.Service.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.ItemProperties.RabbitMQDemo.Web PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

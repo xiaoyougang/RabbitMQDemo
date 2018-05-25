@@ -16,7 +16,4 @@
   <ItemGroup>
     <Folder Include="Views\Account\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RabbitMQDemo.Service\RabbitMQDemo.Service.csproj" />
-  </ItemGroup>
 </Project>
