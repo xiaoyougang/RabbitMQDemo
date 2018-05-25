@@ -8,8 +8,6 @@ namespace RabbitMQDemo.Service
     public class QueueServiceBroker
     {
         static readonly string EXCHANGE_NAME1 = "exchange1";
-        //static readonly string EXCHANGE_NAME2 = "exchange2";
-        //static readonly string EXCHANGE_NAME3 = "exchange3";
 
         static readonly string QUEUE_NAME1 = "queue1";
         static readonly string QUEUE_NAME2 = "queue2";
@@ -18,6 +16,9 @@ namespace RabbitMQDemo.Service
         static readonly string RK_RMQ1 = "DOLA.RMQ.ONE";
         static readonly string RK_RMQ2 = "DOLA.RMQ.TWO";
         static readonly string RK_RMQ3 = "SARA.RMQ.THREE";
+        static readonly string RK_RMQ4 = "DOLA.#";
+        static readonly string RK_RMQ5 = "DOLA.RMQ.*";
+
 
         public static ConnectionFactory InitConnectionFactory()
         {
@@ -46,6 +47,10 @@ namespace RabbitMQDemo.Service
             channel.QueueBind(QUEUE_NAME1, EXCHANGE_NAME1, RK_RMQ1);
             channel.QueueBind(QUEUE_NAME2, EXCHANGE_NAME1, RK_RMQ2);
             channel.QueueBind(QUEUE_NAME3, EXCHANGE_NAME1, RK_RMQ3);
+            channel.QueueBind(QUEUE_NAME1, EXCHANGE_NAME1, RK_RMQ4);
+            channel.QueueBind(QUEUE_NAME1, EXCHANGE_NAME1, RK_RMQ5);
+            channel.QueueBind(QUEUE_NAME2, EXCHANGE_NAME1, RK_RMQ5);
+
         }
 
         public static string GetQueueName(string userName)
@@ -76,15 +81,8 @@ namespace RabbitMQDemo.Service
                         properties.Persistent = true;
                         var bytes = Encoding.UTF8.GetBytes(message);
                         //转发消息业务规则
-                        var routingKey = "";
-                        if (exchangeType == ExchangeType.Topic)
-                        {
-                            routingKey = "DOLA.RMQ.*";
-                        }
-                        else if (exchangeType == ExchangeType.Direct)
-                        {
-                            routingKey = "DOLA.RMQ.ONE";
-                        }
+                        var routingKey = "DOLA.RMQ.ONE";
+
                         //发送信息  
                         channel.BasicPublish(EXCHANGE_NAME1, routingKey, properties, bytes);
                     }
@@ -96,7 +94,7 @@ namespace RabbitMQDemo.Service
             }
         }
 
-        public static void Consume(string exchangeType, string userName)
+        public static string Consume(string exchangeType, string userName)
         {
             try
             {
@@ -111,22 +109,23 @@ namespace RabbitMQDemo.Service
                         QueueingBasicConsumer consumer = new QueueingBasicConsumer(channel);
                         var qName = GetQueueName(userName);
                         //false为手动应答，true为自动应答  
-                        channel.BasicConsume(qName, false, consumer);
-                        while (true)
-                        {
+                        channel.BasicConsume(qName, true, consumer);
+                        //while (true)
+                        //{
                             BasicDeliverEventArgs ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
                             byte[] bytes = ea.Body;
                             var messageStr = Encoding.UTF8.GetString(bytes);
+                            return messageStr;
+                            //Console.WriteLine(userName + " received a message:" + messageStr);
 
-                            Console.WriteLine(userName + " received a message:" + messageStr);
-
-                        }
+                        //}
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return null;
             }
         }
     }
