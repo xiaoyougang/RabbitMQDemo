@@ -1,0 +1,8 @@
+RabbitMQ DEMO 实现功能要求：
+1､ 使用ASP.NET MVC创建项目，身份验证：个人用户帐户；创建帐户：RMQ1, RMQ2, RMQ3, RMQ4
+2､ 使用RMQ1发送一条消息，RMQ2,RMQ3,RMQ4都可以收到消息（fanout）
+3､ 使用RMQ1发送一条消息，RMQ2,RMQ3可以收到消息，但是RMQ4不可以收到消息（topic）
+4､ 使用RMQ1发送一条消息，RMQ2可以收到消息，其它帐户不可以收到消息（direct）
+5､ 如上所示：DEMO中需要分别实现direct,topic,fanout这三种转发消息规则
+6､ DEMO应尽可能的简单，编码习惯良好，标注清晰。
+7、所有实例收到的消息都应该能在页面弹出并显示。
