@@ -30,6 +30,7 @@ namespace RabbitMQDemo.Web
             //            options.AccessDeniedPath = "/Account/Forbidden/";
             //            options.LoginPath = "/Account/Login/";
             //});
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +47,7 @@ namespace RabbitMQDemo.Web
 
             app.UseStaticFiles();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

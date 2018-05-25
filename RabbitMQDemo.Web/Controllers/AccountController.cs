@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using RabbitMQDemo.Web.Models;
 
 namespace RabbitMQDemo.Web.Controllers
@@ -26,24 +27,22 @@ namespace RabbitMQDemo.Web.Controllers
             if (userFromStorage != null) 
             { 
                 //you can add all of ClaimTypes in this collection 
-                //var claims = new List<Claim>() 
-                //{ 
-                //    new Claim(ClaimTypes.Name,userFromStorage.UserName) 
-                //    //,new Claim(ClaimTypes.Email,"emailaccount@microsoft.com")  
-                //}; 
+                var claims = new List<Claim>() 
+                { 
+                    new Claim(ClaimTypes.Name,userFromStorage.UserName)
+                }; 
          
                 //init the identity instances 
-                //var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, "SuperSecureLogin")); 
+                var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)); 
          
                 //signin 
-                /*
-                await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal, new AuthenticationProperties 
+                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties 
                 { 
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20), 
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(10), 
                     IsPersistent = false, 
                     AllowRefresh = false 
                 }); 
-                */
+
          
                 return RedirectToAction("Index", "Home"); 
             } 
@@ -57,7 +56,7 @@ namespace RabbitMQDemo.Web.Controllers
          
         public async Task<IActionResult> Logout() 
         { 
-            await HttpContext.Authentication.SignOutAsync("Cookie"); 
+            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
          
             return RedirectToAction("Index", "Home"); 
         } 
