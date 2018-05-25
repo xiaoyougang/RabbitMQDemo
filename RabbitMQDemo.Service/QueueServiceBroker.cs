@@ -7,15 +7,17 @@ namespace RabbitMQDemo.Service
 {
     public class QueueServiceBroker
     {
-        static readonly string EXCHANGE_NAME1 = "";
+        static readonly string EXCHANGE_NAME1 = "exchange1";
+        //static readonly string EXCHANGE_NAME2 = "exchange2";
+        //static readonly string EXCHANGE_NAME3 = "exchange3";
 
         static readonly string QUEUE_NAME1 = "queue1";
         static readonly string QUEUE_NAME2 = "queue2";
         static readonly string QUEUE_NAME3 = "queue3";
 
-        static readonly string RK_RMQ1 = "RMQ.ONE.DOLA";
-        static readonly string RK_RMQ2 = "RMQ.TWO.DOLA";
-        static readonly string RK_RMQ3 = "RMQ.THREE.SARA";
+        static readonly string RK_RMQ1 = "DOLA.RMQ.ONE";
+        static readonly string RK_RMQ2 = "DOLA.RMQ.TWO";
+        static readonly string RK_RMQ3 = "SARA.RMQ.THREE";
 
         public static ConnectionFactory InitConnectionFactory()
         {
@@ -34,6 +36,8 @@ namespace RabbitMQDemo.Service
         {
             //设置交换器的类型  
             channel.ExchangeDeclare(EXCHANGE_NAME1, exchangeType);
+            //channel.ExchangeDeclare(EXCHANGE_NAME1, exchangeType);
+            //channel.ExchangeDeclare(EXCHANGE_NAME1, exchangeType);
             //声明一个队列，设置队列是否持久化，排他性，与自动删除  
             channel.QueueDeclare(QUEUE_NAME1, true, false, false, null);
             channel.QueueDeclare(QUEUE_NAME2, true, false, false, null);
@@ -75,11 +79,11 @@ namespace RabbitMQDemo.Service
                         var routingKey = "";
                         if (exchangeType == ExchangeType.Topic)
                         {
-                            routingKey = "RMQ.*.DOLAR";
+                            routingKey = "DOLA.RMQ.*";
                         }
                         else if (exchangeType == ExchangeType.Direct)
                         {
-                            routingKey = "RMQ.ONE.DOLAR";
+                            routingKey = "DOLA.RMQ.ONE";
                         }
                         //发送信息  
                         channel.BasicPublish(EXCHANGE_NAME1, routingKey, properties, bytes);
@@ -92,7 +96,7 @@ namespace RabbitMQDemo.Service
             }
         }
 
-        public static string Consume(string exchangeType, string userName)
+        public static void Consume(string exchangeType, string userName)
         {
             try
             {

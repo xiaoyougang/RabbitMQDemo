@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQDemo.Web.Models;
+using RabbitMQDemo.Service;
 
 namespace RabbitMQDemo.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        //[Authorize]
         public IActionResult Index()
         {
             return View();
@@ -37,6 +38,12 @@ namespace RabbitMQDemo.Web.Controllers
         public IActionResult AuthPage()
         {
             return View();
+        }
+
+        public IActionResult Publish(string message, string etype)
+        {
+            QueueServiceBroker.Produce(message, etype);
+            return null;
         }
     }
 }

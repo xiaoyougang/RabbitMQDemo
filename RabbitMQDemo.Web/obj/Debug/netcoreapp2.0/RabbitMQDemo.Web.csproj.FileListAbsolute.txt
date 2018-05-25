@@ -9,3 +9,5 @@
 /Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Web/bin/Debug/netcoreapp2.0/RabbitMQDemo.Web.pdb
 /Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Web/obj/Debug/netcoreapp2.0/RabbitMQDemo.Web.dll
 /Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Web/obj/Debug/netcoreapp2.0/RabbitMQDemo.Web.pdb
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Web/bin/Debug/netcoreapp2.0/RabbitMQDemo.Service.dll
+/Users/xiaoyougang/Projects/RabbitMQDemo/RabbitMQDemo.Web/bin/Debug/netcoreapp2.0/RabbitMQDemo.Service.pdb

@@ -26,22 +26,24 @@ namespace RabbitMQDemo.Web.Controllers
             if (userFromStorage != null) 
             { 
                 //you can add all of ClaimTypes in this collection 
-                var claims = new List<Claim>() 
-                { 
-                    new Claim(ClaimTypes.Name,userFromStorage.UserName) 
-                    //,new Claim(ClaimTypes.Email,"emailaccount@microsoft.com")  
-                }; 
+                //var claims = new List<Claim>() 
+                //{ 
+                //    new Claim(ClaimTypes.Name,userFromStorage.UserName) 
+                //    //,new Claim(ClaimTypes.Email,"emailaccount@microsoft.com")  
+                //}; 
          
                 //init the identity instances 
-                var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, "SuperSecureLogin")); 
+                //var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, "SuperSecureLogin")); 
          
                 //signin 
+                /*
                 await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal, new AuthenticationProperties 
                 { 
                     ExpiresUtc = DateTime.UtcNow.AddMinutes(20), 
                     IsPersistent = false, 
                     AllowRefresh = false 
                 }); 
+                */
          
                 return RedirectToAction("Index", "Home"); 
             } 

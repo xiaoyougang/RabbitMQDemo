@@ -24,12 +24,12 @@ namespace RabbitMQDemo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddAuthorization();
-            services.AddAuthentication("Cookie")
-                    .AddCookie("Cookie", options => {
-                        options.AccessDeniedPath = "/Account/Forbidden/";
-                        options.LoginPath = "/Account/Login/";
-            });
+            //services.AddAuthorization();
+            //services.AddAuthentication("Cookie")
+            //        .AddCookie("Cookie", options => {
+            //            options.AccessDeniedPath = "/Account/Forbidden/";
+            //            options.LoginPath = "/Account/Login/";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +46,7 @@ namespace RabbitMQDemo.Web
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
