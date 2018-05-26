@@ -1,9 +1,29 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">$(function() {
+            var ref = "";
+            var uname = $("#hidUserName").val();
+            function receiveMessage() {
+                $.get("/home/receive", { username: uname }, function(data) {
+                    if (data) {
+                        alert(data);
+                        var html = "<span style='color:green'>" + data + "</span><br/>";
+                        $("#divReceived").append(html);
+                    }
+                });
+            }
+            //receiveMessage();
+            ref = setInterval(receiveMessage, 3000);
+})();</script>
 </head>
 <body>
     <h1>Auth page</h1>
-    <p>if you are not authorized, you can visit this page.</p>
+
+    <input id="hidUserName" type="hidden" value="@ViewBag.UserName" />
+    <div class="row">
+        接收到的消息：<div id="divReceived"></div>
+    </div>
 </body>
 </html>

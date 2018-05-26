@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 using RabbitMQDemo.Web.Models;
 
 namespace RabbitMQDemo.Web.Controllers
@@ -35,16 +36,22 @@ namespace RabbitMQDemo.Web.Controllers
                 //init the identity instances 
                 var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)); 
          
-                //signin 
-                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties 
+                //登录 
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties 
                 { 
                     ExpiresUtc = DateTime.UtcNow.AddMinutes(10), 
                     IsPersistent = false, 
                     AllowRefresh = false 
-                }); 
+                });
 
-         
-                return RedirectToAction("Index", "Home"); 
+                if (userFromStorage.UserName == "RMQ1")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else 
+                {
+                    return RedirectToAction("AuthPage", "Home");
+                }
             } 
             else 
             { 
@@ -56,7 +63,8 @@ namespace RabbitMQDemo.Web.Controllers
          
         public async Task<IActionResult> Logout() 
         { 
-            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
+            //注销
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); 
          
             return RedirectToAction("Index", "Home"); 
         } 

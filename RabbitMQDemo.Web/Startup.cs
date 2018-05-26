@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using Microsoft.AspNetCore.Http;
+using RabbitMQDemo.Service;
 namespace RabbitMQDemo.Web
 {
     public class Startup
@@ -24,13 +25,16 @@ namespace RabbitMQDemo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //services.AddAuthorization();
-            //services.AddAuthentication("Cookie")
-            //        .AddCookie("Cookie", options => {
-            //            options.AccessDeniedPath = "/Account/Forbidden/";
-            //            options.LoginPath = "/Account/Login/";
-            //});
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+            //读取配置信息
+            services.Configure<RabbitmqSetting>(this.Configuration.GetSection("RabbitmqSetting"));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => 
+            {
+                options.LoginPath = new PathString("/Account/Login");
+                options.AccessDeniedPath = new PathString("/Account/Forbidden");
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

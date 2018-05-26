@@ -3,11 +3,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQDemo.Web.Models;
 using RabbitMQDemo.Service;
+using Microsoft.Extensions.Options;
 
 namespace RabbitMQDemo.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public RabbitmqSetting RabbitmqConnInfo;
+        public HomeController(IOptions<RabbitmqSetting> rmqSetting)
+        {
+            RabbitmqConnInfo = rmqSetting.Value;
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -34,16 +41,24 @@ namespace RabbitMQDemo.Web.Controllers
         }
 
 
-        [HttpGet]
+        [Authorize]
         public IActionResult AuthPage()
         {
+            var userName = HttpContext.User.Identity.Name;
+            ViewBag.UserName = userName;
             return View();
         }
 
         public IActionResult Publish(string message, string etype)
         {
-            QueueServiceBroker.Produce(message, etype);
+            QueueServiceBroker.Produce(message, etype, RabbitmqConnInfo);
             return null;
+        }
+
+        public IActionResult Receive(string username)
+        {
+            var message = QueueServiceBroker.Consume(username, RabbitmqConnInfo);
+            return Content(message);
         }
     }
 }
